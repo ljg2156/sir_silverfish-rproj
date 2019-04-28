@@ -13,10 +13,13 @@ silverfish_ws <- gs_title("silverfish_dat")
 silverfish_dat <- gs_read(ss = silverfish_ws)
 # only use ss, when put ws for some reason it says it doesn't exist. 
 # maybe it's because there's only one sheet on that document?
-silverfish_df <- as.data.frame (silverfish_dat)
+silverfish_df <- as.data.frame(silverfish_dat)
+
+silverfish_df <- silverfish_df %>%
+  dplyr::mutate(date_formatted = as.Date(silverfish_df$date, "%m/%d/%Y"))
 
 #' # Plot timecourse occurrences
-ggplot(silverfish_dat, aes(x = "Date", y = "Size (according to pinky)")) +
+ggplot(silverfish_dat, aes(x = "date", y = "num")) +
   geom_line() +
   scale_x_date("%b-%Y") +
   scale_x_date(date_labels = "%d-%b-%Y")
