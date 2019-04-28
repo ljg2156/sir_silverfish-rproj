@@ -19,11 +19,8 @@ silverfish_df <- silverfish_df %>%
   dplyr::mutate(date_formatted = as.Date(silverfish_df$date, "%m/%d/%Y"))
 
 #' # Plot timecourse occurrences
-ggplot(silverfish_dat, aes(x = "date", y = "num")) +
-  geom_line() +
-  scale_x_date("%b-%Y") +
-  scale_x_date(date_labels = "%d-%b-%Y")
-  
+ggplot(silverfish_df, aes(x = date_formatted, y = num)) +
+  geom_line()
 
 #' # Plot timecourse occurrences w/ vertical lines for traps, DE in diff colors
 
