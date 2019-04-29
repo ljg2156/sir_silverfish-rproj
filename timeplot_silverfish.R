@@ -40,9 +40,9 @@ ggplot(full_sf_df, aes(x = date_formatted, y = daily_count)) +
   geom_line()
 
 #' # Plot timecourse occurrences w/ vertical lines for traps, DE in diff colors
-ggplot(silverfish_df, aes(x = date_formatted, y = daily_count)) +
-  geom_line() + 
-  geom_vline(xintercept = 0019-02-19, "red") 
+ggplot(full_sf_df, aes(x = date_formatted, y = daily_count)) +
+  geom_line() +
+  geom_vline(xintercept = as.numeric(as.Date("0019-02-19")), color = "red")
 
 #' # Plot timecourse occurrences w/ vertical lines for traps, DE in diff colors, and change mancer size based on bug size
 
