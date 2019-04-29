@@ -42,14 +42,20 @@ ggplot(full_sf_df, aes(x = date_formatted, y = daily_count)) +
 #' # Plot timecourse occurrences w/ vertical lines for traps, DE in diff colors
 ggplot(full_sf_df, aes(x = date_formatted, y = daily_count)) +
   geom_line() +
-  geom_vline(xintercept = as.numeric(as.Date("0019-02-19")), color = "red")
-
-#' # Plot timecourse occurrences w/ vertical lines for traps, DE in diff colors, and change mancer size based on bug size
-ggplot(full_sf_df, aes(x = date_formatted, y = daily_count)) +
-  geom_line() +
   ggtitle("Silverfish sightings in Halle's Office") +
   xlab("Date seen") +
   ylab("Daily count") +
   geom_vline(xintercept = as.numeric(as.Date("0019-02-19")), color = "red") +
   geom_text(aes(label = "Diatomaceous Earth placement"), x = as.numeric(as.Date("0019-02-17")), y = 1.5, angle = 90, text = element_text(size = 3))
+
+#' # Plot timecourse occurrences w/ vertical lines for traps, DE in diff colors, and change mancer size based on bug size
+ggplot(full_sf_df, aes(x = date_formatted, y = daily_count)) +
+  geom_line() + geom_point(aes(size = size)) +
+  scale_size_continuous(min(0), max(1.5)) +
+  ggtitle("Silverfish sightings in Halle's Office") +
+  xlab("Date seen") +
+  ylab("Daily count") +
+  geom_vline(xintercept = as.numeric(as.Date("0019-02-19")), color = "red") +
+  geom_text(aes(label = "Diatomaceous Earth placement"), x = as.numeric(as.Date("0019-02-17")), y = 1.5, angle = 90, text = element_text(size = 3))
+
 
